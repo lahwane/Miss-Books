@@ -1,13 +1,24 @@
+import { BookIndex } from "./pages/BookIndex.jsx"
 import { Home } from "./pages/Home.jsx"
+import { AppHeader } from "./cmps/AppHeader.jsx"
 
 export function App() {
+    const [page, setPage] = useState('books')
+    function onSetPage(page) {
+        setPage(page)
+    }
+
+
     return (
         <section className="app">
-            <header className="app-header main-layout">
-                <h1>My App</h1>
-            </header>
+            <AppHeader onSetPage={onSetPage} />
             <main className="main-layout">
+                {page === 'home' && <Home />}
+                {page === 'about' && <About />}
+                {page === 'books' && <BookIndex />}
+
                 <Home />
+                <BookIndex />
             </main>
         </section>
     )
